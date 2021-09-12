@@ -1,0 +1,207 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #1f004e;
+  --secondary: #7447bc;
+  --white: #f2f2f2;
+  --pink: #f7c0bd;
+  --wisteria: #bbabea;
+  --red: #e83f5b;
+  --green: #4cd62b;
+  --cyan: #00a9bf;
+  --shadow: rgba(0, 0, 0, 0.5);
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--primary);
+  font-family: "Poppins", serif;
+}
+
+.music-player {
+  width: 350px;
+  height: 550px;
+  border-radius: 20px;
+  background: var(--white);
+  box-shadow: 0 40px 100px var(--shadow);
+  padding: 30px;
+  overflow: hidden;
+  color: var(--primary);
+}
+
+.music-name,
+.artist-name {
+  text-align: left;
+  text-transform: capitalize;
+}
+
+.music-name {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.artist-name {
+  font-size: 18px;
+}
+
+.disk {
+  position: relative;
+  display: block;
+  margin: 40px auto;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-image: url("./images/cover.jpg");
+  background-size: cover;
+  box-shadow: 0 0 0 10px var(--shadow);
+  animation: rotate 28s linear infinite;
+  animation-play-state: paused;
+}
+
+.disk.play {
+    animation-play-state: running;
+}
+
+.disk::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--primary);
+}
+
+.song-slider {
+  width: 100%;
+  position: relative;
+}
+
+.seek-bar {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 5px;
+  border-radius: 10px;
+  background: var(--wisteria);
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.seek-bar::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 1px;
+  height: 20px;
+  box-shadow: -400px 0 0 400px var(--primary);
+}
+
+.current-time,
+.song-duration {
+  font-size: 14px;
+}
+
+.song-duration {
+  position: absolute;
+  right: 0;
+}
+
+.controls {
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+  margin-top: 20px;
+}
+
+.play-btn {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #1f004e, #7447bc, #f7c0bd);
+  cursor: pointer;
+  border: none;
+}
+
+.play-btn span {
+  position: absolute;
+  top: 50%;
+  left: 25%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 30px;
+  border-radius: 2px;
+  background: var(--wisteria);
+  transition: 0.5s;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.play-btn span:nth-child(2) {
+  left: 55%;
+  transform-origin: center;
+}
+
+.play-btn.pause span:nth-child(2) {
+  transform: translateY(-50%) scaleY(0);
+}
+
+.play-btn.pause span:nth-child(1) {
+  width: 35%;
+  left: 53%;
+  transform: translate(-50%, -50%);
+  border-radius: 0;
+  clip-path: polygon(0 0, 100% 50%, 100% 50%, 0 100%);
+}
+
+.play-btn.pause {
+  animation: pulse 1.8s linear infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0;
+  }
+
+  50% {
+    box-shadow: 0 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+
+  100% {
+    box-shadow: 0 0 0 5px var(--shadow);
+  }
+}
+
+.btn {
+  width: 40px;
+  height: 40px;
+  background: var(--wisteria);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
